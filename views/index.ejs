@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>PAC APP 2</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <!--Created by hcm on 19.11.2017.-->
+
+<head>
+  <title>Aerospace Mission Control</title>
+  <meta name="google-site-verification" content="s1RHck0FTb15T7CLPCiTrRskyC_RV6M8YqNkN1VeyQI" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+  <!--script(src='javascripts/socket.io.js' type='text/javascript')-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" type="text/javascript"></script>
+  <script src="javascripts/index.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body>
+  <div class="tab"><button class="tablinks active" onclick="openTab(event,'sim-tab')">Simulation</button><button class="tablinks active" onclick="openTab(event,'mission-tab')">Launch</button><button class="tablinks active" onclick="openTab(event,'login-tab')">Cloud Access</button></div>
+  <div class="tab-content" id="login-tab">
+    <div id="login-div">
+      <form id="login-form">
+        Type in credentials for cloud access
+        <div class="form-group"><label>Key:</label><input class="form-control" id="db-key-box" type="text" placeholder="" name="db-key-input" value="" /><button id="cloud-login-button" type="button" onclick="dbLogin()">Sign In</button></div>
+      </form>
+    </div>
+  </div>
+  <div class="tab-content" id="sim-tab">
+    <div id="burst-calc">
+      <form id="burst-form">
+        Balloon Burst Calculation
+        <div class="form-group"><label>Gas Type</label><input class="form-control" id="gasType-box" type="text" placeholder="Gas Type" name="gas-type" value="" /><label>Launch Volume</label><input class="form-control" id="launchVolume-box" type="text" placeholder="Volume(m^3)"
+            name="volume-input" value="" /><label>Balloon Weight</label><input class="form-control" id="balloonWeight-box" type="text" placeholder="Balloon Weight(g)" name="balloon-weight-input" value="" /><label>Payload Weight</label><input class="form-control"
+            id="payloadWeight-box" type="text" placeholder="Payload Weight" name="payload-weight-input" value="" /></div>
+      </form>
+    </div>
+  </div>
+  <div class="tab-content" id="mission-tab">
+    <div id="download-csv-div">
+      <button id="save-to-cloud-button" type="button" onclick="saveFlight()">Save Data to Cloud</button><br/><button id="download-csv-button" type="button" onclick="downloadCsv()">Download Flight Data</button><br/>
+      <form id="upload-csv-form" action="/upload" target="_blank" enctype="multipart/form-data" method="post">Upload Data for Analysis<br/><input type="file" name="upload" multiple="multiple" /><br/><input type="submit" value="Upload" /></form>
+    </div>
+    <div class="header-message">
+      <h1>Hello Hal!</h1>
+      <p>Today is Sun Mar 17 2019.</p>
+    </div>
+    <div class="left-bar">
+      <div class="left-upper-row">
+        <div class="view-box" id="message-bar">
+          <div class="message-boxes">
+            <form id="message-form" method="POST" action="/send_message">
+              <div class="form-group"><label for="username"></label><input class="form-control" id="username-box" type="text" placeholder="Username" name="username" value="" /></div>
+              <div class="form-group"><label for="password"></label><input class="form-control" id="password-box" type="text" placeholder="Password" name="password" value="" /></div>
+              <div class="form-group"><label for="imei"></label><input class="form-control" id="imei-box" type="text" placeholder="IMEI" name="imei" value="" /></div>
+              <div class="form-group"><label for="message"></label><input class="form-control" id="msg-box" type="text" placeholder="Message" name="msg" value="" /></div>
+              <button class="btn btn-primary" id="send-message-button" type="button" onclick="sendToServer()">Submit</button>
+            </form>
+          </div>
+          <div class="coord-boxes">
+            <form id="coord-form" method="POST" action="/">
+              <strong>Last known coordinates:</strong>
+              <div class="form-group"><br/><label for="longitude">Longitude:</label><input class="form-control" id="longitude-box" type="text" placeholder="0.0" name="longitude" value="" /></div>
+              <div class="form-group"><label for="latitude">Latitude:</label><input class="form-control" id="latitude-box" type="text" placeholder="0.0" name="latitude" value="" /></div>
+              <div class="form-group"><label for="accurracy">Accuracy:</label><input class="form-control" id="accuracy-box" type="text" placeholder="0.0" name="accuracy" value="" /></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="left-lower-row">
+        <div id="inbox-box">
+          <div class="inbox-element">
+            <div class="time-row"><span>Timestamp</span></div>
+            <div class="data-row"><span>Data</span></div>
+            <div class="lat-row"><span>Latitude</span></div>
+            <div class="lon-row"><span>Longitude</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjvUF_VrecmLOG4q0oczQKnyv_a2L6NqM&amp;callback=initMap"></script>
+    
+    
+    <div class="right-bar">
+      <div class="map-box">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+</body>
+  
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
